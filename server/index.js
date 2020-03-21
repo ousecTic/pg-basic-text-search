@@ -24,13 +24,13 @@ app.get("/users", async (req, res) => {
       [`%${name}%`]
     );
 
-    const users = await pool.query(
-      `SELECT * FROM users WHERE first_name || ' ' || last_name ILIKE '% ${name}%'`
-    );
+    //Below is EVIL CODE (this is what we go over in the last section to learn about SQL injection)
+
+    // const users = await pool.query(
+    //   `SELECT * FROM users WHERE first_name || ' ' || last_name ILIKE '% ${name}%'`
+    // );
 
     //
-
-
 
     res.json(users.rows);
   } catch (err) {
